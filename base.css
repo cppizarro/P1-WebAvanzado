@@ -421,6 +421,10 @@ body.dark tr:nth-child(even) {
         width: 30%;
     }
 
+    .wrapper-specific {
+        font-size: 25px;
+    }
+
     .game-over {
         top: 390px;
         width: 100%;
