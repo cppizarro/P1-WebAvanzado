@@ -528,13 +528,20 @@ body.dark tr:nth-child(even) {
     .table-column {
         width: 100%;
     }
+
+    .wrapper {
+        position: sticky;
+        top: -237px;
+        z-index: 1;
+    }
+
     .info-container {
         padding: 15px;
         font-size: 18px;
+        position: sticky;
+        top: 0px;
+        z-index: 1;
     }
-    .on-scroll{
-        position: fixed;
-        top: 0;
-    }
+
 }
     
