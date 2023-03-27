@@ -268,6 +268,13 @@ function fillTableOfHonor(){
 
         if (Data === null){
             console.log("nulo");
+            const tableRowId = "#table"+possiblePairs[k];
+            const noDataId = "#no-data-"+possiblePairs[k];
+
+            const tableWithNoData = document.querySelector(tableRowId);
+            console.log(tableWithNoData);
+            tableWithNoData.classList.toggle("is-hidden");
+            document.querySelector(noDataId).classList.toggle("is-hidden");
         }
         else{
             const triesData = Data["tries-data"];
