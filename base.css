@@ -265,7 +265,7 @@ tr:nth-child(even) {
 
 .game-over {
     position: fixed;
-    display: none;
+    display: block;
     left: 0;
     top: 225px;
     width: 100%;
@@ -276,7 +276,7 @@ tr:nth-child(even) {
 }
 .ranking-classification {
     text-align: center;
-    display: none;
+    display: block;
     background-color: lightcoral;
 }
 .ranking-classification h4 {
@@ -360,6 +360,10 @@ body.dark .table-container {
 
 body.dark .game-over {
     background-color: palevioletred;
+}
+
+body.dark .ranking-classification{
+    background-color: indianred;
 }
 
 body.dark tr:nth-child(even) {
