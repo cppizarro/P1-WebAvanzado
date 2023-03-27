@@ -173,13 +173,6 @@ window.onclick = function(event) {
     }
 }   
 
-//TODO: fijar div para cuando haya scroll
-// infoContainer = document.querySelector('.info-container'),
-
-// window.scroll(function() {
-//     infoContainer.toggleClass('on-scroll');
-// });
-
 // Variables
 // localStorage.clear();
 let firstCard, secondCard;
