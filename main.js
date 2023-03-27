@@ -182,6 +182,7 @@ let started = false;
 let time = 0;
 let interval;
 let tries = 0;
+let actualDate;
 
 let gameStorageKey = localStorage.getItem("last-game-storage-key");
 let gameData = JSON.parse(localStorage.getItem(gameStorageKey));
@@ -383,8 +384,9 @@ function isOver() {
         document.querySelector(".total-time span").innerHTML = timeToString(time);
 
         const hoy = new Date();
-        triesTableDataDict[tries] = hoy.toLocaleString();
-        timeTableDataDict[timeToString(time)] = hoy.toLocaleString();
+        actualDate = hoy.toLocaleString();
+        triesTableDataDict[tries] = actualDate;
+        timeTableDataDict[timeToString(time)] = actualDate;
         belongsToTableOfHonor();
         fillTableOfHonor();
 
@@ -401,9 +403,8 @@ function timeToString(timeInSeconds){
 
 function belongsToTableOfHonor(){
     const rowsTableOfHonor = 3
-    const actualPlayerTries = Object.keys(triesTableDataDict)[Object.keys(triesTableDataDict).length - 1];
-    const actualDate = triesTableDataDict[Object.keys(triesTableDataDict)[Object.keys(triesTableDataDict).length - 1]];
-    const actualPlayerTime = Object.keys(timeTableDataDict)[Object.keys(timeTableDataDict).length - 1];
+    // const actualPlayerTries = Object.keys(triesTableDataDict)[Object.keys(triesTableDataDict).length - 1];
+    // const actualPlayerTime = Object.keys(timeTableDataDict)[Object.keys(timeTableDataDict).length - 1];
     triesTableDataDict = sortDictData(triesTableDataDict);
     timeTableDataDict = sortDictData(timeTableDataDict);
 
@@ -420,16 +421,35 @@ function belongsToTableOfHonor(){
         }
     }
 
-    //TODO: mensaje de que ha clasificado en el ranking
+    let ranked = false;
+    let rankedIn = [];
     for (let key in triesTableDataDict) {
-        if (key === actualPlayerTries && triesTableDataDict[key] === actualDate) {
-            console.log("clasifica en intentos");
+        console.log(key)
+        console.log(triesTableDataDict[key])
+        if (parseInt(key) === tries && triesTableDataDict[key] === actualDate) {
+            ranked = true;
+            rankedIn.push("Intentos");
         }
     }
+    console.log(actualDate);
     for (let key in timeTableDataDict) {
-        if (key === actualPlayerTime && timeTableDataDict[key] === actualDate) {
-            console.log("clasifica en tiempo");
+        console.log(key);
+        console.log(timeTableDataDict[key])
+        if (key === timeToString(time) && timeTableDataDict[key] === actualDate) {
+            ranked = true;
+            rankedIn.push("Tiempo");
         }
+    }
+
+    if (ranked) {
+        if(rankedIn.length > 1){
+            const rankedString = rankedIn.join(" y ");
+            document.querySelector(".rnkng span").innerHTML = rankedString;
+        }
+        else{
+            document.querySelector(".rnkng span").innerHTML = rankedIn[0];
+        }  
+        document.querySelector(".ranking-classification").classList.toggle("is-visible");
     }
 
     gameData = {"tries-data":triesTableDataDict, "time-data":timeTableDataDict}
@@ -467,6 +487,9 @@ const all_btns = document.querySelectorAll(".pairs");
 function selectPairs(){
     if (document.querySelector(".game-over").classList.value.includes('is-visible')){
         document.querySelector(".game-over").classList.toggle("is-visible");
+        if (document.querySelector(".ranking-classification").classList.value.includes('is-visible')){
+            document.querySelector(".ranking-classification").classList.toggle("is-visible");
+        }
     }
     if (this.classList.value.includes('disabled')){
     }

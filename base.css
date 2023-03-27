@@ -271,7 +271,16 @@ tr:nth-child(even) {
     width: 100%;
     height: 40%;
     z-index: 2;
+    /* background-color: lightcoral; */
+    background-color: lightpink;
+}
+.ranking-classification {
+    text-align: center;
+    display: none;
     background-color: lightcoral;
+}
+.ranking-classification h4 {
+    color: white;
 }
 
 .is-visible {
@@ -422,7 +431,7 @@ body.dark tr:nth-child(even) {
     .game-over {
         top: 390px;
         width: 100%;
-        height: 32%;
+        height: 38%;
     }
 
 }
@@ -434,7 +443,7 @@ body.dark tr:nth-child(even) {
     .game-over {
         top: 300px;
         width: 100%;
-        height: 25%;
+        height: 30%;
     }
 }
   
@@ -451,7 +460,7 @@ body.dark tr:nth-child(even) {
     .game-over {
         top: 130px;
         width: 100%;
-        height: 48%;
+        height: 60%;
     }
 
     h2 {
@@ -521,9 +530,9 @@ body.dark tr:nth-child(even) {
         padding-bottom: calc(100% / 4 - 10px);
     }
     .game-over {
-        top: 225px;
+        top: 200px;
         width: 100%;
-        height: 40%;
+        height: 45%;
     }
     .table-column {
         width: 100%;
