@@ -159,6 +159,7 @@ span.onclick = function() {
     modal.classList.toggle("is-visible");
     if (gameOver){
         document.querySelector(".game-over").classList.toggle("is-visible");
+        gameOver = false;
     }
 }
 
@@ -167,6 +168,7 @@ window.onclick = function(event) {
         modal.classList.toggle("is-visible");
         if (gameOver){
             document.querySelector(".game-over").classList.toggle("is-visible");
+            gameOver = false;
         }
     }
 }   
@@ -259,29 +261,27 @@ function fillTableOfHonor(){
         const Data = JSON.parse(localStorage.getItem(storageKey));
         const triesQueryId = "#tries"+possiblePairs[k];
         const timeQueryId = "#time"+possiblePairs[k];
+        const tableRowId = "#table"+possiblePairs[k];
+        const noDataId = "#no-data-"+possiblePairs[k];
         const triesTable = document.querySelector(triesQueryId);
         const timeTable = document.querySelector(timeQueryId);
         triesTable.innerHTML="";
         timeTable.innerHTML="";
 
-        console.log(Data);
-
         if (Data === null){
-            console.log("nulo");
-            const tableRowId = "#table"+possiblePairs[k];
-            const noDataId = "#no-data-"+possiblePairs[k];
-
-            const tableWithNoData = document.querySelector(tableRowId);
-            console.log(tableWithNoData);
-            tableWithNoData.classList.toggle("is-hidden");
+            document.querySelector(tableRowId).classList.toggle("is-hidden");
             document.querySelector(noDataId).classList.toggle("is-hidden");
         }
         else{
+            if (document.querySelector(tableRowId).classList.value.includes('is-hidden')){
+                document.querySelector(tableRowId).classList.toggle("is-hidden");
+                document.querySelector(noDataId).classList.toggle("is-hidden");
+            }
+
             const triesData = Data["tries-data"];
             const timeData = Data["time-data"]; 
             const triesKeys = Object.keys(triesData);
             const timeKeys = Object.keys(timeData);
-            console.log(triesKeys);
 
             for (let i=0; i < triesKeys.length; i++){
                 const triesRow = document.createElement("tr");
@@ -297,8 +297,6 @@ function fillTableOfHonor(){
                 triesRow.appendChild(triesInfo);
                 triesRow.appendChild(dateInfoTries);
                 triesTable.appendChild(triesRow);
-                console.log("triesRow-"+i.toString());
-                console.log(triesRow);
     
                 timeInfo.innerHTML += timeKeys[i]
                 dateInfoTime.innerHTML += timeData[timeKeys[i]];
