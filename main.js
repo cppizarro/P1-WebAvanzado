@@ -390,8 +390,8 @@ function isOver() {
         document.querySelector(".total-time span").innerHTML = timeToString(time);
 
         const hoy = new Date();
-        triesTableDataDict[tries] = hoy.toLocaleDateString();
-        timeTableDataDict[timeToString(time)] = hoy.toLocaleDateString();
+        triesTableDataDict[tries] = hoy.toLocaleString();
+        timeTableDataDict[timeToString(time)] = hoy.toLocaleString();
         belongsToTableOfHonor();
         fillTableOfHonor();
 
