@@ -325,12 +325,6 @@ body.dark .memory-card .front {
 
 body.dark .memory-card .back {
     background-color: #AFEEEE;
-    transform: rotateY(180deg);
-    border-radius:10px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
 }
 
 body.dark .button-23 {
