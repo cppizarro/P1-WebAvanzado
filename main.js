@@ -382,7 +382,6 @@ function isOver() {
     if (guessedPairs.length === 0){
         clearInterval(interval);
         started = false;
-        console.log("juego terminado!");
         document.querySelector(".tries span").innerHTML = "0";
         document.querySelector(".time span").innerHTML = "00:00";
         document.querySelector(".game-over").classList.toggle("is-visible");
@@ -409,10 +408,12 @@ function timeToString(timeInSeconds){
 
 function belongsToTableOfHonor(){
     const rowsTableOfHonor = 3
+    const actualPlayerTries = Object.keys(triesTableDataDict)[Object.keys(triesTableDataDict).length - 1];
+    const actualDate = triesTableDataDict[Object.keys(triesTableDataDict)[Object.keys(triesTableDataDict).length - 1]];
+    const actualPlayerTime = Object.keys(timeTableDataDict)[Object.keys(timeTableDataDict).length - 1];
     triesTableDataDict = sortDictData(triesTableDataDict);
     timeTableDataDict = sortDictData(timeTableDataDict);
-    console.log(triesTableDataDict);
-    console.log(timeTableDataDict);
+
     triesDataKeys = Object.keys(triesTableDataDict).slice(0,rowsTableOfHonor);
     timeDataKeys = Object.keys(timeTableDataDict).slice(0,rowsTableOfHonor);
     for (let key in triesTableDataDict) {
@@ -423,6 +424,18 @@ function belongsToTableOfHonor(){
     for (let key in timeTableDataDict) {
         if (!timeDataKeys.includes(key)) {
             delete timeTableDataDict[key];
+        }
+    }
+
+    //TODO: mensaje de que ha clasificado en el ranking
+    for (let key in triesTableDataDict) {
+        if (key === actualPlayerTries && triesTableDataDict[key] === actualDate) {
+            console.log("clasifica en intentos");
+        }
+    }
+    for (let key in timeTableDataDict) {
+        if (key === actualPlayerTime && timeTableDataDict[key] === actualDate) {
+            console.log("clasifica en tiempo");
         }
     }
 
@@ -513,6 +526,3 @@ window.onload = function () {
     fillTableOfHonor();
     generateBoard(pairs);
 }
-
-//FIXME: vaciar la tabla de html para volver a llenarla pq ahora se va alargando
-//FIXME: tabla undefined
