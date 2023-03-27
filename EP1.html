@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name ="viewport" content="width= device-width, initial-scale=1.0 ">
+    <link rel="stylesheet" href="base.css"/>
+    <title>Proyecto 1 - Web Avanzado</title>
+</head>
+<body>
+    <main class="main-container">
+        <div class="wrapper">
+            <h1>MEMORICE</h1>
+            <div class="control-buttons">
+                <span>Jugar!</span>
+            </div>
+
+            <div class="btn-group">
+                <button class="button-23 pairs" id="btn8" data-pairs="8">8</button>
+                <button class="button-23 pairs" id="btn18" data-pairs="18">18</button>
+                <button class="button-23 pairs" id="btn32" data-pairs="32">32</button>
+                ||
+                <button class="button-23 mode"><span>Modo Oscuro</span></button>
+            </div>
+            <br>
+            <div class="info-container">
+                <div class="tries">
+                    Intentos: <span>0</span>
+                </div>
+                <div class="time">
+                    Tiempo: <span>00:00</span>
+                </div>
+            </div>
+
+            <br>
+
+            <button class="button-23" id="rankingBtn">Ver Ranking</button>
+        </div>
+        
+        <div id="ranking-modal" class="modal">
+
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Ranking</h1>
+                <div class="table-container">
+                    <h4>8 pares</h4>
+                    <div class="table-row" id="table8">
+                        <div class="table-column tries8">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Intentos</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tries8">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-column time8">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tiempo</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="time8">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h4>18 pares</h4>
+                    <div class="table-row tries" id="table18">
+                        <div class="table-column">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Intentos</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tries18">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-column">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tiempo</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="time18">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h4>32 pares</h4>
+                    <div class="is-hidden" id="no-data-32">No hay datos</div>
+                    <div class="table-row" id="table32">
+                        <div class="table-column">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Intentos</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tries32">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-column">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tiempo</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="time32">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="memory-board">
+        
+        </div>
+
+        <div class="game-over">
+            <div class="wrapper-game-over">
+                <h2>Juego Terminado!</h2>
+                <h3>Tus resultados son:</h3>
+                <h3 class="total-tries">Intentos: <span></span></h3>
+                <h3 class="total-time">Tiempo: <span></span></h3>
+                <p>*Para volver a jugar seleccione la cantidad de pares</p>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="main.js"></script>
+</html>

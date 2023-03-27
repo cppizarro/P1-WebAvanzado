@@ -1,0 +1,548 @@
+* {
+    box-sizing: border-box;
+}
+html {
+    min-height: 100%;
+}
+body {
+    background-color: #EFF3F5; 
+    font-family: Arial, Tahoma, sans-serif;
+}
+
+body.dark {
+    background-color: #192229;
+    color: #C8CDD0;
+}
+
+h1, h4 {
+    text-align: center;
+    color: #2A3B47;
+}
+
+h2 {
+    font-size: xx-large;
+    color: white;
+}
+
+
+.info-container {
+    width: 85%;
+    margin: auto auto 0;
+    background-color: #FFFFFF; 
+    padding: 20px;
+    font-size: 20px;
+    overflow: hidden;
+    border: 2px solid #1083D6;
+    border-radius: 8px;
+}
+
+.info-container .tries {
+    float: left;
+    width: 50%;
+}
+
+.info-container .time {
+    float: right;
+    width: 50%;
+    text-align: right;
+}
+
+.memory-board {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 650px;
+    text-align: center;
+    align-content: center;
+    margin: 0 auto;
+}
+  
+.memory-card {
+    width: calc(100% / 6 - 10px);
+    padding-bottom: calc(100% / 6 - 10px);
+    margin: 5px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.memory-card-8 {
+    width: calc(100% / 4 - 10px);
+    padding-bottom: calc(100% / 4 - 10px);
+}
+
+.memory-card-18 {
+    width: calc(100% / 6 - 10px);
+    padding-bottom: calc(100% / 6 - 10px);
+}
+
+.memory-card-32 {
+    width: calc(100% / 8 - 10px);
+    padding-bottom: calc(100% / 8 - 10px);
+}
+  
+.memory-card .front, .memory-card .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+  
+.memory-card .front {
+    background-color: #A0A7AC;
+    border-radius:10px;
+    z-index: 2;
+    border: 2px solid #697477;
+}
+  
+.memory-card .back {
+    background-color: mediumturquoise;
+    /* background-color: lightseagreen; */
+    transform: rotateY(180deg);
+    border-radius:10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.flipCard {
+    transform: rotateY(180deg);
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+  
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-23 {
+    background-color: #FFFFFF;
+    border: 1px solid #2A3B47;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #2A3B47;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    padding: 13px 23px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    touch-action: manipulation;
+    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+    user-select: none;
+    -webkit-user-select: none;
+    width: auto;
+}
+  
+.button-23:focus-visible {
+    box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+    transition: box-shadow .2s;
+}
+
+.button-23:active {
+    background-color: #F7F7F7;
+    border-color: #000000;
+    transform: scale(.96);
+}
+
+.disabled {
+    border-color: #DDDDDD;
+    color: #DDDDDD;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.wrapper-game-over {
+    text-align: center;
+}
+
+.table-container {
+    width: 85%;
+    margin: auto auto 0;
+    background-color: white;
+    overflow: hidden;
+    border: 2px solid #1083D6;
+}
+    
+
+.table-row {
+    margin-left:-5px;
+    margin-right:-5px;
+    visibility: visible;
+}
+  
+.table-column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+}
+
+.table-row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+table {
+    display: inline-block;
+    margin: 0 10px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 40%;
+}
+  
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+  
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.control-buttons {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(64, 66, 67, 0.9);
+}
+.control-buttons span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #52A5E0;
+    color: #FFF;
+    padding: 15px 25px;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.game-over {
+    position: fixed;
+    display: none;
+    left: 0;
+    top: 225px;
+    width: 100%;
+    height: 40%;
+    z-index: 2;
+    background-color: lightcoral;
+}
+
+.is-visible {
+    display: block;
+}
+
+.is-hidden{
+    visibility:hidden;
+}
+
+.svg-icon {
+    width: 60%;
+    height: 60%;
+}
+  
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+    fill: black;
+}
+  
+.svg-icon circle {
+    stroke: black;
+    stroke-width: 1;
+}
+
+body.dark h1 {
+    color: #EFF3F5;
+}
+
+body.dark h2 {
+    color: #EFF3F5;
+}
+
+body.dark h3 {
+    color: #EFF3F5;
+}
+
+body.dark h4 {
+    color: #EFF3F5;
+}
+
+body.dark .info-container {
+    background-color: #212E36;
+    border-color: #52A5E0;
+}
+
+body.dark .memory-card .front {
+    background-color: #A0A7AC;
+}
+
+body.dark .memory-card .back {
+    background-color: #AFEEEE;
+    transform: rotateY(180deg);
+    border-radius:10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+body.dark .button-23 {
+    background-color: #192229;
+    border-color: #C8CDD0;
+    color: #C8CDD0;
+}
+
+body.dark .disabled {
+    border-color: #2A3B47;
+    color:#2A3B47;
+}
+
+body.dark .modal-content {
+    background-color: #2A3B47;
+    border: 1px solid #888;
+}
+
+body.dark .table-container {
+    background-color: #2A3B47;
+    overflow: hidden;
+    border: 2px solid #52A5E0;
+}
+
+body.dark .game-over {
+    background-color: palevioletred;
+}
+
+body.dark tr:nth-child(even) {
+    background-color: #212E36;
+}
+
+
+@media screen and (max-width: 1920px) and (min-width: 1080px) {
+    body {
+        height: 100vh;
+        margin: 0;
+    }
+    .memory-board {
+        min-width: 50%;
+        margin: 0px 20px;
+        margin-left: 100px;
+    }
+
+    /* .memory-card-32 {
+        width: calc(100% / 16 - 10px);
+        padding-bottom: calc(100% / 16 - 10px);
+    } */
+    span {
+        font-size: 30px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    h4{
+        font-size: 30px;
+    }
+
+    .tries, .time {
+        font-size: 30px;
+    }
+
+    table {
+        font-size: 25px;
+    }
+
+    .button-23 {
+        font-size: 25px;
+        padding: 30px 53px;
+    }
+
+    .main-container {
+        display: flex;
+        height: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .wrapper {
+        margin-top: 200px;
+        margin-left: 50px;
+        width: 30%;
+    }
+
+    /* .memory-board {
+        max-width: 1800px;
+        /* margin-top: 0px;
+        margin-left: 4px;
+        margin-right: 5px;
+    } */
+
+    .game-over {
+        top: 350px;
+        width: 100%;
+        height: 25%;
+    }
+
+    /* .memory-board-32{
+        margin-top: 90px;
+        max-width: 1800px;
+    } */
+}
+  
+@media screen and (min-width: 768px) and (max-width: 1919px) {
+    /* .memory-card {
+      width: calc(100% / 4 - 10px);
+      padding-bottom: calc(100% / 4 - 10px);
+    } */
+    h4 {
+        font-size: 20px;
+    }
+    .game-over {
+        top: 300px;
+        width: 100%;
+        height: 25%;
+    }
+}
+  
+@media screen and (min-width: 720px) and (max-width: 767px) {
+    .memory-board {
+        max-width: 60%;
+        /* margin-top: 0px;
+        margin-left: 4px;
+        margin-right: 5px; */
+        margin: 0px 10px;
+        margin-left: 20px;
+    }
+    .wrapper {
+        margin-left: 30px;
+        width: 30%;
+    }
+    .game-over {
+        top: 150px;
+        width: 100%;
+        height: 45%;
+    }
+
+    .main-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .tries, .time {
+        font-size: 10px;
+    }
+
+    table {
+        font-size: 10px;
+    }
+    .modal-content h1 {
+        font-size: large;
+    }
+    .modal-content h4 {
+        font-size: medium;
+    }
+
+    .button-23 {
+        font-size: 10px;
+        padding: 10px 18px;
+    }
+    .memory-card-8 {
+        width: 75px;
+        padding-bottom: 75px;
+    }
+
+    .memory-card-18 {
+        margin: 4px;
+        width: 54px;
+        padding-bottom: 54px;
+    }
+
+    .memory-card-32 {
+        margin: 2px;
+        width: 48px;
+        padding-bottom: 48px; 
+        /* width: calc(100% / 8 - 10px);
+        padding-bottom: calc(100% / 8 - 10px);  */
+    }
+}
+  
+@media screen and (max-width: 360px) {
+    .memory-board {
+        max-width: 320px;
+    }
+
+    .memory-card-18 {
+        width: calc(100% / 4 - 10px);
+        padding-bottom: calc(100% / 4 - 10px);
+    }
+  
+    .memory-card-32 {
+        width: calc(100% / 4 - 10px);
+        padding-bottom: calc(100% / 4 - 10px);
+    }
+    .game-over {
+        top: 225px;
+        width: 100%;
+        height: 40%;
+    }
+    .table-column {
+        width: 100%;
+    }
+    .info-container {
+        padding: 15px;
+        font-size: 18px;
+    }
+    .on-scroll{
+        position: fixed;
+        top: 0;
+    }
+}
+    
