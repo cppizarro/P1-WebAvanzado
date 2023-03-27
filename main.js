@@ -306,16 +306,6 @@ function fillTableOfHonor(){
                 
             }
         }
-        // catch (err){
-        //     const tableRowId = "#table"+possiblePairs[k];
-        //     const noDataId = "#no-data-"+possiblePairs[k];
-        //     console.log(err)
-
-        //     // document.querySelector(tableRowId).classList.toggle("is-hidden");
-        //     // document.querySelector(noDataId).classList.toggle("is-hidden");
-        //     //FIXME: es probable que no funcione correctamente y el mensaje se muestre constantemente
-
-        // }
 
     }
 
