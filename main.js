@@ -203,6 +203,10 @@ else {
 function generateBoard(pairs){
     tries = 0;
     time = 0;
+    clearInterval(interval);
+    started = false;
+    document.querySelector(".tries span").innerHTML = "0";
+    document.querySelector(".time span").innerHTML = "00:00";
     const board = document.querySelector(".memory-board");
     const old = document.querySelectorAll('.memory-card');
     for (let k=0; k< old.length; k++){
@@ -452,7 +456,8 @@ function belongsToTableOfHonor(){
         document.querySelector(".ranking-classification").classList.toggle("is-visible");
     }
 
-    gameData = {"tries-data":triesTableDataDict, "time-data":timeTableDataDict}
+    gameData = {"tries-data":triesTableDataDict, "time-data":timeTableDataDict};
+    console.log(gameData)
     localStorage.setItem(gameStorageKey, JSON.stringify(gameData));
 
 }
