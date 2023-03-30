@@ -205,6 +205,17 @@ function generateBoard(pairs){
     time = 0;
     clearInterval(interval);
     started = false;
+    gameStorageKey = localStorage.getItem("last-game-storage-key");
+    gameData = JSON.parse(localStorage.getItem(gameStorageKey));
+
+    if (gameData === null) {
+        triesTableDataDict = {};
+        timeTableDataDict = {}; 
+    }
+    else {
+        triesTableDataDict = gameData["tries-data"];
+        timeTableDataDict = gameData["time-data"]; 
+    }
     document.querySelector(".tries span").innerHTML = "0";
     document.querySelector(".time span").innerHTML = "00:00";
     const board = document.querySelector(".memory-board");
@@ -407,8 +418,6 @@ function timeToString(timeInSeconds){
 
 function belongsToTableOfHonor(){
     const rowsTableOfHonor = 3
-    // const actualPlayerTries = Object.keys(triesTableDataDict)[Object.keys(triesTableDataDict).length - 1];
-    // const actualPlayerTime = Object.keys(timeTableDataDict)[Object.keys(timeTableDataDict).length - 1];
     triesTableDataDict = sortDictData(triesTableDataDict);
     timeTableDataDict = sortDictData(timeTableDataDict);
 
@@ -490,6 +499,7 @@ btn32.addEventListener('click', selectPairs);
 const all_btns = document.querySelectorAll(".pairs");
 
 function selectPairs(){
+    resetBoard();
     if (document.querySelector(".game-over").classList.value.includes('is-visible')){
         document.querySelector(".game-over").classList.toggle("is-visible");
         if (document.querySelector(".ranking-classification").classList.value.includes('is-visible')){
